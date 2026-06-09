@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <uses-permission android:name="ru.evotor.permission.PAYMENT_SYSTEM" />
+    <uses-permission android:name="ru.evotor.permission.CLOSE_BANK_SESSION" />
+    <uses-permission android:name="ru.evotor.permission.PRINT_Z_REPORT" />
+    <uses-permission android:name="ru.evotor.pushnotifications.PUSH_RECEIVE" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -11,16 +16,37 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EvotorKkt">
+
+        <meta-data android:name="app_uuid" android:value="7a7d1613-5108-4a23-9753-3d56b214585a"/>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/Theme.EvotorKkt">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
+
+            <meta-data
+                android:name="ru.evotor.launcher.BACKGROUND_COLOR"
+                android:value="#133788" />
+
+            <!-- Чтобы заменить кнопку Продажа в интерфейсе терминала -->
+            <intent-filter>
+                <action android:name="ru.evotor.intent.action.SELL_MAIN" />
+
+                <category android:name="android.intent.category.EVOTOR" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.EVOTOR" />
+            </intent-filter>
+
         </activity>
     </application>
 
