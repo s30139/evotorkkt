@@ -25,14 +25,18 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import ru.svod.evotorkkt.ui.theme.EvotorKktTheme
 
+
 private  const val TAG = "ru.svod.evotorkkt"
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
         val mActivity = this
+
+        var jlog = LogcatCapture()
 
         setContent {
             EvotorKktTheme {
@@ -48,6 +52,9 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+        jlog.start(this)
+
     }
 }
 
@@ -76,10 +83,8 @@ fun PageSettings(modifier: Modifier = Modifier, mActivity: Activity) {
             // Add new position
             Button(
                 onClick = {
-                    //SoundNotify().execute("")
-                    //tryUpdateApk(mActivity)
-                    Log.e(TAG, "Button onClick")
-                    Toast.makeText(mActivity, "Button onClick", Toast.LENGTH_LONG).show()
+                    Log.e(TAG, "Button onClick 1422")
+                    Toast.makeText(mActivity, "Button onClick 1422", Toast.LENGTH_LONG).show()
                 }
             ) { Text(text = "Обновить") }
 
@@ -87,8 +92,6 @@ fun PageSettings(modifier: Modifier = Modifier, mActivity: Activity) {
     }
 
 }
-
-
 
 
 @Composable

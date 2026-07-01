@@ -19,6 +19,15 @@
 
         <meta-data android:name="app_uuid" android:value="7a7d1613-5108-4a23-9753-3d56b214585a"/>
 
+        <receiver
+            android:name=".PushReceiver"
+            android:exported="true"
+            android:permission="ru.evotor.pushnotifications.PUSH_SENDER">
+            <intent-filter>
+                <action android:name="ru.evotor.pushnotifications.PUSH_RECEIVED_EVENT" />
+            </intent-filter>
+        </receiver>
+
         <activity
             android:name=".MainActivity"
             android:exported="true"
