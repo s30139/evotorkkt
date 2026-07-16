@@ -23,10 +23,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ru.evotor.pushNotifications.BuildConfig
 import ru.svod.evotorkkt.ui.theme.EvotorKktTheme
 
 
-private  const val TAG = "ru.svod.evotorkkt"
+private const val TAG = "ru.svod.evotorkkt"
+const val appVersion = BuildConfig.VERSION_NAME
+val currentVersionCode = BuildConfig.VERSION_CODE
 
 class MainActivity : ComponentActivity() {
 
@@ -35,6 +38,9 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         val mActivity = this
+
+        FileLogger.init(this) // где угодно дальше
+        FileLogger.d("MainActivity", "Экран открыт")
 
         var jlog = LogcatCapture()
 
@@ -83,16 +89,15 @@ fun PageSettings(modifier: Modifier = Modifier, mActivity: Activity) {
             // Add new position
             Button(
                 onClick = {
-                    Log.e(TAG, "Button onClick 1422")
-                    Toast.makeText(mActivity, "Button onClick 1422", Toast.LENGTH_LONG).show()
+                    Log.e(TAG, "Button onClick appVersion<${appVersion}>")
+                    Toast.makeText(mActivity, "Button onClick currentVersionCode<${currentVersionCode}> appVersion<${appVersion}>", Toast.LENGTH_LONG).show()
                 }
-            ) { Text(text = "Обновить") }
+            ) { Text(text = "Обновить 9 currentVersionCode<${currentVersionCode}> appVersion<${appVersion}>") }
 
         }
     }
 
 }
-
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
